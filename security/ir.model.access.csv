@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_proyecto_dam_proyecto_dam,proyecto_dam.proyecto_dam,model_proyecto_dam_proyecto_dam,base.group_user,1,1,1,1
+access_proyecto_dam_usuario,proyecto_dam.usuario,model_proyecto_dam_usuario,base.group_user,1,1,1,1

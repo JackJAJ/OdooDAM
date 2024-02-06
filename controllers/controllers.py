@@ -1,21 +1,30 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
+import json
+
+class OdooJSONController(http.Controller):
+
+    @http.route('/jsonrpc/authenticate', type='json', auth='none', methods=['POST'], csrf=False)
+    def authenticate(self, **params):
+        username = params.get('username')
+        password = params.get('password')
+
+        if username == "admin" and password == "admin":
+            return {"result": "Authentication successful"}
+        else:
+            return {"error": "Authentication failed"}
 
 
-# class ProyectoDam(http.Controller):
-#     @http.route('/proyecto_dam/proyecto_dam', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+    @http.route('/jsonrpc/modify_user', type='json', auth='none', methods=['POST'], csrf=False)
+    def modify_user(self, **params):
+        username = params.get('username')
+        premium = params.get('premium')
+        karma = params.get('karma')
+        
+        return {"result": f"User {username} modified. Premium: {premium}, Karma: {karma}"}
 
-#     @http.route('/proyecto_dam/proyecto_dam/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('proyecto_dam.listing', {
-#             'root': '/proyecto_dam/proyecto_dam',
-#             'objects': http.request.env['proyecto_dam.proyecto_dam'].search([]),
-#         })
-
-#     @http.route('/proyecto_dam/proyecto_dam/objects/<model("proyecto_dam.proyecto_dam"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('proyecto_dam.object', {
-#             'object': obj
-#         })
+    @http.route('/jsonrpc/get_user_info', type='json', auth='none', methods=['POST'], csrf=False)
+    def get_user_info(self, **params):
+        username = params.get('username')
+        
+        return {"premium": True, "karma": 100}
