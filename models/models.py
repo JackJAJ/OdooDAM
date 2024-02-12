@@ -4,7 +4,8 @@ from odoo import models, fields, api
 
 
 class usuario(models.Model):
-    _name = 'res.user'
+    _name = 'res.users'
+    _inherit = 'res.users'
     _description = 'Modelo para gestionar usuarios'
 
     premium = fields.Boolean( string = 'Premium', default = False )
